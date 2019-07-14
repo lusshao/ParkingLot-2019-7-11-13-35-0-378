@@ -8,11 +8,11 @@ public class ParkingBoy {
         this.parkingLot = parkingLot;
     }
 
-    public TicketLog parkCar(Car car) {
+    public TicketLog parkCar(Car car) throws ParkingLotIsFullException {
         return  parkingLot.parkCar(car);
     }
 
-    public Car pickCar(TicketLog ticketLog) {
+    public Car pickCar(TicketLog ticketLog) throws UnrecognizedParkingTicketException, NullTickedProvidedException {
         return parkingLot.pickCar(ticketLog);
     }
 }

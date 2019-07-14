@@ -10,14 +10,27 @@ public class Customer {
     }
 
     public void parkCar(ParkingBoy parkingBoy){
-        this.ticketLog = parkingBoy.parkCar(car);
+        try {
+            this.ticketLog = parkingBoy.parkCar(car);
+        } catch (ParkingLotIsFullException e) {
+            ticketLog = null;
+            System.out.print("Not enough position.\n");
+        }
         if(ticketLog!=null) {
             this.car = null;
         }
     }
 
     public void pickCar(ParkingBoy parkingBoy){
-        this.car = parkingBoy.pickCar(ticketLog);
+        try {
+            this.car = parkingBoy.pickCar(ticketLog);
+        } catch (UnrecognizedParkingTicketException e) {
+            car = null;
+            System.out.print("Unrecognized parking ticket\n");
+        } catch (NullTickedProvidedException e) {
+            car = null;
+            System.out.print("Please provide your parking ticket\n");
+        }
         this.ticketLog = null;
     }
 

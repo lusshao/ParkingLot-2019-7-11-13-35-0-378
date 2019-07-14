@@ -81,7 +81,4 @@ public class ParkingStoryTest1 {
         assertEquals(customer2.getTicketLog(),null);
         assertEquals(customer2.getCar(),car2);
     }
-
-
-
 }
