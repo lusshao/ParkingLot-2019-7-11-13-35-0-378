@@ -33,4 +33,12 @@ public class ParkingLot {
         cars.remove(ticketLog);
         return car;
     }
+
+    public int getNowCapasity() {
+        return capasity-cars.size();
+    }
+
+    public boolean hasTicketLog(TicketLog ticketLog) {
+        return cars.containsKey(ticketLog);
+    }
 }
