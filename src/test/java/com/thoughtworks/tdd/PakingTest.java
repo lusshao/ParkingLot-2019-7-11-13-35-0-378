@@ -17,4 +17,17 @@ public class PakingTest {
         assertEquals(car,car2);
     }
 
+    @Test
+    public void should_return_null_when_PakingLot_is_full(){
+        //given
+        ParkingLot parkingLot = new ParkingLot(1);
+        Car car = new Car();
+        Car car2 = new Car();
+        //when
+        TicketLog ticketLog1 = parkingLot.parkCar(car);
+        TicketLog ticketLog2 = parkingLot.parkCar(car2);
+        //then
+        assertEquals(ticketLog2,null);
+    }
+
 }

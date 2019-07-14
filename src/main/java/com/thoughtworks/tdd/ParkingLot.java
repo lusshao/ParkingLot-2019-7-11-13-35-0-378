@@ -14,6 +14,9 @@ public class ParkingLot {
 
 
     public TicketLog parkCar(Car car) {
+        if(capasity <= cars.size()){
+            return null;
+        }
         TicketLog ticketLog = new TicketLog();
         cars.put(ticketLog,car);
         return ticketLog;
