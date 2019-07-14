@@ -9,7 +9,7 @@ public class Customer {
         this.car = car;
     }
 
-    public void parkCar(ParkingBoy parkingBoy){
+    public void parkCar(CanParkCar parkingBoy){
         try {
             this.ticketLog = parkingBoy.parkCar(car);
         } catch (ParkingLotIsFullException e) {

@@ -3,7 +3,7 @@ package com.thoughtworks.tdd;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ParkingBoy {
+public class ParkingBoy implements CanParkCar{
     private List<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
 
     public List<ParkingLot> getParkingLots() {
@@ -26,13 +26,21 @@ public class ParkingBoy {
         return parkingLots.get(0).parkCar(car);
     }
 
-    public Car pickCar(TicketLog ticketLog) throws UnrecognizedParkingTicketException, NullTickedProvidedException {
+    public Car pickCar(TicketLog ticketLog) throws  NullTickedProvidedException, UnrecognizedParkingTicketException {
         for(int i =0;i<parkingLots.size();i++){
             if(parkingLots.get(i).hasTicketLog(ticketLog)){
                 return parkingLots.get(i).pickCar(ticketLog);
             }
         }
         return parkingLots.get(0).pickCar(ticketLog);
+    }
+
+    public TicketLog parkCar(Car car, ParkingLot ticketLog) throws ParkingLotIsFullException {
+        return ticketLog.parkCar(car);
+    }
+
+    public Car pickCar(TicketLog ticketLog, ParkingLot parkingLot) throws NullTickedProvidedException, UnrecognizedParkingTicketException {
+        return parkingLot.pickCar(ticketLog);
     }
 
     public void getNewParkingLot(ParkingLot parkingLot) {
