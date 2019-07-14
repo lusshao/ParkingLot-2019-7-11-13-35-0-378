@@ -53,5 +53,20 @@ public class ParkingStoryTest1 {
         assertEquals(customer2.getCar(),null);
     }
 
+    @Test
+    public void should_return_null_when_pick_car_given_a_ticket_already_been_used(){
+        ParkingLot parkingLot = new ParkingLot(5);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        Car car1 = new Car();
+        Customer customer1 = new Customer(car1);
+        customer1.parkCar(parkingBoy);
+        TicketLog ticketLog = customer1.getTicketLog();
+        customer1.pickCar(parkingBoy);
+        customer1.setTicketLog(ticketLog);
+        customer1.pickCar(parkingBoy);
+        assertEquals(customer1.getCar(),null);
+    }
+
+
 
 }

@@ -26,4 +26,8 @@ public class Customer {
     public void setTicketLog(TicketLog ticketLog) {
         this.ticketLog = ticketLog;
     }
+
+    public TicketLog getTicketLog() {
+        return ticketLog;
+    }
 }
