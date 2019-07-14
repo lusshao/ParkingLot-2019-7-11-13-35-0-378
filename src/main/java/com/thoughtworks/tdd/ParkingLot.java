@@ -23,6 +23,8 @@ public class ParkingLot {
     }
 
     public Car pickCar(TicketLog ticketLog) {
-        return cars.get(ticketLog);
+        Car car = cars.get(ticketLog);
+        cars.remove(ticketLog);
+        return car;
     }
 }
