@@ -10,14 +10,20 @@ public class Customer {
     }
 
     public void parkCar(ParkingBoy parkingBoy){
-        parkingBoy.parkCar(car);
+        this.ticketLog = parkingBoy.parkCar(car);
+        this.car = null;
     }
 
     public void pickCar(ParkingBoy parkingBoy){
-        parkingBoy.pickCar(ticketLog);
+        this.car = parkingBoy.pickCar(ticketLog);
+        this.ticketLog = null;
     }
 
     public Car getCar() {
         return car;
+    }
+
+    public void setTicketLog(TicketLog ticketLog) {
+        this.ticketLog = ticketLog;
     }
 }
