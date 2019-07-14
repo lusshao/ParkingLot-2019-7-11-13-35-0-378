@@ -67,6 +67,21 @@ public class ParkingStoryTest1 {
         assertEquals(customer1.getCar(),null);
     }
 
+    @Test
+    public void should_return_null_when_park_car_given_parkingLot_is_full(){
+        ParkingLot parkingLot = new ParkingLot(1);
+        ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
+        Car car1 = new Car();
+        Car car2 = new Car();
+        Customer customer1 = new Customer(car1);
+        Customer customer2 = new Customer(car2);
+        customer1.parkCar(parkingBoy);
+        customer2.parkCar(parkingBoy);
+        assertEquals(customer1.getCar(),null);
+        assertEquals(customer2.getTicketLog(),null);
+        assertEquals(customer2.getCar(),car2);
+    }
+
 
 
 }

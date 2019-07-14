@@ -11,7 +11,9 @@ public class Customer {
 
     public void parkCar(ParkingBoy parkingBoy){
         this.ticketLog = parkingBoy.parkCar(car);
-        this.car = null;
+        if(ticketLog!=null) {
+            this.car = null;
+        }
     }
 
     public void pickCar(ParkingBoy parkingBoy){
