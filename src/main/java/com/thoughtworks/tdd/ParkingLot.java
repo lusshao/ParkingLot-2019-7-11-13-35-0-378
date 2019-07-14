@@ -38,6 +38,10 @@ public class ParkingLot {
         return capasity-cars.size();
     }
 
+    public double getNowAvailablePositionRate () {
+        return (double)cars.size()/(double)capasity;
+    }
+
     public boolean hasTicketLog(TicketLog ticketLog) {
         return cars.containsKey(ticketLog);
     }
