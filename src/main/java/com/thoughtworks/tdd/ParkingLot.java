@@ -3,7 +3,7 @@ package com.thoughtworks.tdd;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ParkingLot {
+public class ParkingLot extends Parker{
     private final int capasity;
     private Map<TicketLog, Car> cars;
 
