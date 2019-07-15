@@ -3,7 +3,7 @@ package com.thoughtworks.tdd;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ParkingLot extends Parker{
+public class ParkingLot implements CanParkCar{
     private final int capasity;
     private Map<TicketLog, Car> cars;
 
@@ -32,6 +32,16 @@ public class ParkingLot extends Parker{
         Car car = cars.get(ticketLog);
         cars.remove(ticketLog);
         return car;
+    }
+
+    @Override
+    public boolean iSFull() {
+        return capasity<cars.size();
+    }
+
+    @Override
+    public boolean isContainTicket(TicketLog ticketLog) {
+        return cars.containsKey(ticketLog);
     }
 
     public int getNowCapasity() {

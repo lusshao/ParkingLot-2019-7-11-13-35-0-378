@@ -3,7 +3,7 @@ package com.thoughtworks.tdd;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Parker {
+public abstract class Parker implements CanParkCar {
     protected List<ParkingLot> parkingLots = new ArrayList<ParkingLot>();
 
     public Parker(ParkingLot parkingLot) {
@@ -34,5 +34,25 @@ public abstract class Parker {
 
     public void getNewParkingLot(ParkingLot parkingLot) {
         parkingLots.add(parkingLot);
+    }
+
+    @Override
+    public boolean iSFull() {
+        for(int i=0;i<parkingLots.size();i++) {
+            if (parkingLots.get(i).getNowCapasity() > 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean isContainTicket(TicketLog ticketLog) {
+        for(int i =0;i<parkingLots.size();i++){
+            if(parkingLots.get(i).hasTicketLog(ticketLog)){
+                return true;
+            }
+        }
+        return false;
     }
 }
