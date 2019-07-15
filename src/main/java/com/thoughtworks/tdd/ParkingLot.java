@@ -36,7 +36,7 @@ public class ParkingLot implements CanParkCar{
 
     @Override
     public boolean iSFull() {
-        return capasity<cars.size();
+        return capasity<=cars.size();
     }
 
     @Override
