@@ -3,6 +3,7 @@ package com.thoughtworks.tdd;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 public class ParkingStoryTest1 {
@@ -12,10 +13,10 @@ public class ParkingStoryTest1 {
         ParkingLot parkingLot = new ParkingLot(1);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
         Car car = new Car();
-        Customer customer = new Customer(car);
-        customer.parkCar(parkingBoy);
-        customer.pickCar(parkingBoy);
-        assertEquals(customer.getCar(),car);
+
+        TicketLog ticketLog = parkingBoy.parkCar(car);
+
+        assertEquals(parkingBoy.pickCar(ticketLog),car);
 
     }
 
@@ -25,14 +26,12 @@ public class ParkingStoryTest1 {
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
         Car car1 = new Car();
         Car car2 = new Car();
-        Customer customer1 = new Customer(car1);
-        Customer customer2 = new Customer(car2);
-        customer1.parkCar(parkingBoy);
-        customer2.parkCar(parkingBoy);
-        customer1.pickCar(parkingBoy);
-        customer2.pickCar(parkingBoy);
-        assertEquals(customer1.getCar(),car1);
-        assertEquals(customer2.getCar(),car2);
+
+        TicketLog ticketLog1 = parkingBoy.parkCar(car1);
+        TicketLog ticketLog2 = parkingBoy.parkCar(car2);
+
+        assertEquals(parkingBoy.pickCar(ticketLog1),car1);
+        assertEquals(parkingBoy.pickCar(ticketLog2),car2);
     }
 
     @Test
@@ -41,16 +40,8 @@ public class ParkingStoryTest1 {
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
         Car car1 = new Car();
         Car car2 = new Car();
-        Customer customer1 = new Customer(car1);
-        Customer customer2 = new Customer(car2);
-        customer1.parkCar(parkingBoy);
-        customer2.parkCar(parkingBoy);
-        customer1.setTicketLog(new TicketLog());
-        customer2.setTicketLog(null);
-        customer1.pickCar(parkingBoy);
-        customer2.pickCar(parkingBoy);
-        assertEquals(customer1.getCar(),null);
-        assertEquals(customer2.getCar(),null);
+        parkingBoy.parkCar(car1);
+        assertThrows(UnrecognizedParkingTicketException.class,()->parkingBoy.pickCar(new TicketLog()));
     }
 
     @Test
@@ -58,13 +49,10 @@ public class ParkingStoryTest1 {
         ParkingLot parkingLot = new ParkingLot(5);
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
         Car car1 = new Car();
-        Customer customer1 = new Customer(car1);
-        customer1.parkCar(parkingBoy);
-        TicketLog ticketLog = customer1.getTicketLog();
-        customer1.pickCar(parkingBoy);
-        customer1.setTicketLog(ticketLog);
-        customer1.pickCar(parkingBoy);
-        assertEquals(customer1.getCar(),null);
+        TicketLog ticketLog = parkingBoy.parkCar(car1);
+        parkingBoy.pickCar(ticketLog);
+
+        assertThrows(UnrecognizedParkingTicketException.class,()->parkingBoy.pickCar(ticketLog));
     }
 
     @Test
@@ -73,12 +61,10 @@ public class ParkingStoryTest1 {
         ParkingBoy parkingBoy = new ParkingBoy(parkingLot);
         Car car1 = new Car();
         Car car2 = new Car();
-        Customer customer1 = new Customer(car1);
-        Customer customer2 = new Customer(car2);
-        customer1.parkCar(parkingBoy);
-        customer2.parkCar(parkingBoy);
-        assertEquals(customer1.getCar(),null);
-        assertEquals(customer2.getTicketLog(),null);
-        assertEquals(customer2.getCar(),car2);
+
+        parkingBoy.parkCar(car1);
+
+        assertThrows(ParkingLotIsFullException.class,()->parkingBoy.parkCar(car2));
+
     }
 }

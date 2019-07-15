@@ -1,4 +1,4 @@
 package com.thoughtworks.tdd;
 
-public class ParkingLotIsFullException extends Exception{
+public class ParkingLotIsFullException extends RuntimeException{
 }

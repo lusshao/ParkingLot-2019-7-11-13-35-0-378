@@ -8,7 +8,7 @@ public class ParkingStoryTest4 {
 
     @Test
     public void should_park_car_to_most_capacity_parkingLot_when_park_car_by_smartParkingBoy() throws NullTickedProvidedException, UnrecognizedParkingTicketException {
-        //given
+
         ParkingLot parkingLot1 = new ParkingLot(10);
         ParkingLot parkingLot2 = new ParkingLot(20);
         ParkingLot parkingLot3 = new ParkingLot(5);
@@ -17,13 +17,10 @@ public class ParkingStoryTest4 {
         smartParkingBoy.getNewParkingLot(parkingLot2);
         smartParkingBoy.getNewParkingLot(parkingLot3);
         Car car = new Car();
-        Customer customer = new Customer(car);
 
-        //when
-        customer.parkCar(smartParkingBoy);
+        TicketLog ticketLog = smartParkingBoy.parkCar(car);
 
-        //then
-        assertEquals(parkingLot2.pickCar(customer.getTicketLog()),car);
+        assertEquals(parkingLot2.pickCar(ticketLog),car);
 
     }
 }

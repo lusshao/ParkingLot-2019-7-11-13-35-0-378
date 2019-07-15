@@ -23,15 +23,7 @@ public abstract class Parker implements CanParkCar {
         }
         return parkingLots.get(0).pickCar(ticketLog);
     }
-
-    public TicketLog parkCar(Car car, ParkingLot ticketLog) throws ParkingLotIsFullException {
-        return ticketLog.parkCar(car);
-    }
-
-    public Car pickCar(TicketLog ticketLog, ParkingLot parkingLot) throws NullTickedProvidedException, UnrecognizedParkingTicketException {
-        return parkingLot.pickCar(ticketLog);
-    }
-
+    
     public void getNewParkingLot(ParkingLot parkingLot) {
         parkingLots.add(parkingLot);
     }
