@@ -13,38 +13,26 @@ public abstract class Parker implements CanParkCar {
     public Parker() {
     }
 
-    public abstract TicketLog parkCar(Car car) throws ParkingLotIsFullException;
+    public abstract TicketLog parkCar(Car car);
 
-    public Car pickCar(TicketLog ticketLog) throws  NullTickedProvidedException, UnrecognizedParkingTicketException {
-        for(int i =0;i<parkingLots.size();i++){
-            if(parkingLots.get(i).hasTicketLog(ticketLog)){
-                return parkingLots.get(i).pickCar(ticketLog);
-            }
+    public Car pickCar(TicketLog ticketLog) {
+        if(parkingLots.stream().filter(x->x.hasTicketLog(ticketLog)).findFirst().isPresent()){
+            return parkingLots.stream().filter(x->x.hasTicketLog(ticketLog)).findFirst().get().pickCar(ticketLog);
         }
         return parkingLots.get(0).pickCar(ticketLog);
     }
-    
+
     public void getNewParkingLot(ParkingLot parkingLot) {
         parkingLots.add(parkingLot);
     }
 
     @Override
     public boolean iSFull() {
-        for(int i=0;i<parkingLots.size();i++) {
-            if (parkingLots.get(i).getNowCapasity() > 0) {
-                return true;
-            }
-        }
-        return false;
+        return parkingLots.stream().filter(x->x.getNowCapasity()>0).findFirst().isPresent();
     }
 
     @Override
     public boolean isContainTicket(TicketLog ticketLog) {
-        for(int i =0;i<parkingLots.size();i++){
-            if(parkingLots.get(i).hasTicketLog(ticketLog)){
-                return true;
-            }
-        }
-        return false;
+        return parkingLots.stream().filter(x->x.hasTicketLog(ticketLog)).findFirst().isPresent();
     }
 }

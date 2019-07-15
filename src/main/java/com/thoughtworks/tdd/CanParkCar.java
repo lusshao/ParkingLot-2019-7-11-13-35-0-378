@@ -1,8 +1,8 @@
 package com.thoughtworks.tdd;
 
 public interface CanParkCar {
-    public TicketLog parkCar(Car car) throws ParkingLotIsFullException;
-    public Car pickCar(TicketLog ticketLog) throws NullTickedProvidedException, UnrecognizedParkingTicketException;
+    public TicketLog parkCar(Car car);
+    public Car pickCar(TicketLog ticketLog);
 
     boolean iSFull();
 

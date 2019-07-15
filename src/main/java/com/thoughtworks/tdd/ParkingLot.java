@@ -13,7 +13,7 @@ public class ParkingLot implements CanParkCar{
     }
 
 
-    public TicketLog parkCar(Car car) throws ParkingLotIsFullException {
+    public TicketLog parkCar(Car car) {
         if (capasity <= cars.size()) {
             throw new ParkingLotIsFullException();
         }
@@ -22,7 +22,7 @@ public class ParkingLot implements CanParkCar{
         return ticketLog;
     }
 
-    public Car pickCar(TicketLog ticketLog) throws UnrecognizedParkingTicketException, NullTickedProvidedException {
+    public Car pickCar(TicketLog ticketLog) {
         if (ticketLog == null) {
             throw new NullTickedProvidedException();
         }

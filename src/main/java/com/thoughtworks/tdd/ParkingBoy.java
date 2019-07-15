@@ -12,7 +12,7 @@ public class ParkingBoy extends Parker implements CanParkCar{
     public ParkingBoy() {
     }
 
-    public TicketLog parkCar(Car car) throws ParkingLotIsFullException {
+    public TicketLog parkCar(Car car) {
         if(parkingLots.stream().filter(x-> !x.iSFull()).findFirst().isPresent()){
             System.out.println(parkingLots.stream().filter(x-> !x.iSFull()).findFirst().get().getNowCapasity());
             return parkingLots.stream().filter(x-> !x.iSFull()).findFirst().get().parkCar(car);

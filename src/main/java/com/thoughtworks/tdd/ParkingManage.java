@@ -18,7 +18,7 @@ public class ParkingManage{
         throw new ParkingLotIsFullException();
     }
 
-    public Car pickCar(TicketLog ticketLog) throws NullTickedProvidedException, UnrecognizedParkingTicketException {
+    public Car pickCar(TicketLog ticketLog) {
         if(ticketLog ==null){
             throw new NullTickedProvidedException();
         }
