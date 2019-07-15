@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ParkingStoryTest5 {
     @Test
-    public void should_park_car_to_larger_available_position_parkingLot_when_park_car_by_smartParkingBoy() throws NullTickedProvidedException, UnrecognizedParkingTicketException, ParkingLotIsFullException {
+    public void should_park_car_to_larger_available_position_parkingLot_when_park_car_by_superSmartParkingBoy() throws NullTickedProvidedException, UnrecognizedParkingTicketException, ParkingLotIsFullException {
         //given
         ParkingLot parkingLot1 = new ParkingLot(100);
         ParkingLot parkingLot2 = new ParkingLot(10);
