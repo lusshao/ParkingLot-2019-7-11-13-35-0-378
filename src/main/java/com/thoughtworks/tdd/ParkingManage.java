@@ -24,16 +24,17 @@ public class ParkingManage implements CanParkCar {
 
 
 
-    public TicketLog callBoysParkCar(int parkingBoysIndex,Car car) throws ParkingLotIsFullException {
-        return parkingBoys.get(parkingBoysIndex).parkCar(car,parkingLot);
+    public void callBoysParkCar(ParkingBoy parkingBoys,Customer customer) throws ParkingLotIsFullException {
+        customer.parkCar(parkingBoys);
     }
 
-    public Car callBoysPickCar(int parkingBoysIndex,TicketLog ticketLog) throws NullTickedProvidedException, UnrecognizedParkingTicketException {
-        return parkingBoys.get(parkingBoysIndex).pickCar(ticketLog,parkingLot);
+    public void callBoysPickCar(ParkingBoy parkingBoys,Customer customer) throws NullTickedProvidedException, UnrecognizedParkingTicketException {
+        customer.pickCar(parkingBoys);
     }
 
 
     public void putInManageList(ParkingBoy parkingBoy) {
+        parkingBoy.getNewParkingLot(parkingLot);
         parkingBoys.add(parkingBoy);
     }
 }

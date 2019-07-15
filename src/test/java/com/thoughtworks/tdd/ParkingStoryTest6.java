@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ParkingStoryTest6 {
     @Test
-    public void should_park_car_and_pick_car_when_the_parkingManage_let_the_park_boy_in_his_manageList() throws NullTickedProvidedException, UnrecognizedParkingTicketException {
+    public void should_park_car_and_pick_car_when_the_parkingManage_let_the_park_boy_in_his_manageList() throws NullTickedProvidedException, UnrecognizedParkingTicketException, ParkingLotIsFullException {
         //given
         ParkingLot parkingLot = new ParkingLot(10);
         ParkingManage parkingManage = new ParkingManage(parkingLot);
@@ -22,8 +22,24 @@ public class ParkingStoryTest6 {
         Customer customer1 = new Customer(car1);
 
         //when
+        parkingManage.callBoysParkCar((ParkingBoy) parkingBoy,customer1);
+        parkingManage.callBoysPickCar((ParkingBoy) parkingBoy2,customer1);
+        //then
+        assertEquals(customer1.getCar(),car1);
+    }
+
+    @Test
+    public void should_park_car_and_pick_car_By_parkingManage(){
+        //given
+        ParkingLot parkingLot = new ParkingLot(10);
+        ParkingManage parkingManage = new ParkingManage(parkingLot);
+        Car car1 = new Car();
+        Customer customer1 = new Customer(car1);
+
+        //when
+        customer1.parkCar(parkingManage);
         customer1.parkCar(parkingManage);
         //then
-        assertEquals(parkingLot.pickCar(customer1.getTicketLog()),car1);
+        assertEquals(customer1.getCar(),car1);
     }
 }
